@@ -3,11 +3,27 @@ export interface LoginForm {
   password: string;
 }
 
-interface dataType {
+export interface Token {
   token: string;
 }
 
-export interface LoginResponseData {
+export interface UserInfo {
+  userId: number;
+  avatar: string;
+  username: string;
+  password: string;
+  desc: string;
+  roles: string[];
+  buttons: string[];
+  routes: string[];
+  token: string;
+}
+
+export interface User {
+  checkUser: UserInfo;
+}
+
+export interface ResponseData<T> {
   code: number;
-  data: dataType;
+  data: T;
 }
