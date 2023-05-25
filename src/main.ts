@@ -7,12 +7,6 @@ import "@/styles/index.scss";
 import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 import "virtual:svg-icons-register";
 
-import axios from "axios";
-axios.post("/api/user/login", {
-  username: "admin",
-  password: "111111",
-});
-
 const app: App<Element> = createApp(App);
 app.use(ElementPlus, {
   locale: zhCn,
