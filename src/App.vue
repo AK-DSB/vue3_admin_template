@@ -1,17 +1,15 @@
 <template>
   <div class="p-4">
-    <el-button type="primary" size="default" :icon="Plus">主要按钮</el-button>
-    <el-button type="success" size="small" :icon="Edit">编辑按钮</el-button>
-    <el-button type="danger" size="default" :icon="Delete">删除按钮</el-button>
-    <el-pagination
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
-    ></el-pagination>
-    <Test />
+    <h1>SVG测试</h1>
+    <!-- 测试SVG图标使用 -->
+    <svg-icon name="lock" color="yellow" width="100" height="100" />
   </div>
 </template>
-<script lang="ts" setup>
-import { Plus, Edit, Delete } from "@element-plus/icons-vue";
-import Test from "@/components/Test.vue";
-</script>
-<style scoped lang="scss"></style>
+<script lang="ts" setup></script>
+<style scoped lang="scss">
+div {
+  h1 {
+    color: red;
+  }
+}
+</style>
