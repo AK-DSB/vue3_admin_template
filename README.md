@@ -1,21 +1,25 @@
 # eslint 配置
 
-## 安装eslint
+## 安装 eslint
+
 ```shell
 pnpm i eslint -D
 ```
 
 ## 生成配置文件: .eslint.cjs
+
 ```shell
 npx eslint --init
 ```
 
-## 安装vue3环境代码校验插件
+## 安装 vue3 环境代码校验插件
+
 ```shell
 pnpm install -D eslint-plugin-import eslint-plugin-vue eslint-plugin-node eslint-plugin-prettier eslint-config-prettier eslint-plugin-node @babel/eslint-parser
 ```
 
-## 修改.eslintrc.cjs文件
+## 修改.eslintrc.cjs 文件
+
 ```cjs
 module.exports = {
   env: {
@@ -75,20 +79,23 @@ module.exports = {
 }
 ```
 
-## 添加 .eslintignore文件
+## 添加 .eslintignore 文件
+
 ```.eslintignore
 dist
 node_modules
 ```
 
-# 配置prettier
+# 配置 prettier
 
 ## 安装依赖包
+
 ```shell
 pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 ```
 
-## 添加 .prettierrc.json规则
+## 添加 .prettierrc.json 规则
+
 ```json
 {
   "singleQuote": true,
@@ -101,7 +108,8 @@ pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 }
 ```
 
-## 添加 .prettierignore忽略文件
+## 添加 .prettierignore 忽略文件
+
 ```text
 /dist/*
 /html/*
@@ -112,14 +120,16 @@ pnpm install -D eslint-plugin-prettier prettier eslint-config-prettier
 /public/*
 ```
 
-# 配置stylelint
+# 配置 stylelint
 
 ## 安装依赖
+
 ```shell
 pnpm add sass sass-loader stylelint postcss postcss-scss postcss-html stylelint-config-prettier stylelint-config-recess-order stylelint-config-recommended-scss stylelint-config-standard stylelint-config-standard-vue stylelint-scss stylelint-order stylelint-config-standard-scss -D
 ```
 
-## 配置 .stylelintrc.cjs文件
+## 配置 .stylelintrc.cjs 文件
+
 ```cjs
 // @see https://stylelint.bootcss.com/
 
@@ -176,7 +186,8 @@ module.exports = {
 }
 ```
 
-## 配置 .stylelintignore文件
+## 配置 .stylelintignore 文件
+
 ```.stylelintignore
 /node_modules/*
 /dist/*
@@ -184,14 +195,16 @@ module.exports = {
 /public/*
 ```
 
-# 配置husky
+# 配置 husky
 
 ## 安装
+
 ```shell
 pnpm install -D husky
 ```
 
 ## 执行
+
 ```shell
 npx husky-init
 ```

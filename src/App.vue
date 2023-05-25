@@ -4,12 +4,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-for (let index = 0; index < array.length; index++)
-{
-  const element = array[index];
-  
+for (let index = 0; index < array.length; index++) {
+  const element = array[index]
 }
 </script>
 <style scoped lang="scss">
-.box{}
+.box {
+}
 </style>
