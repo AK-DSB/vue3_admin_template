@@ -1,14 +1,18 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider">123</div>
+    <div class="layout_slider">
+      <Logo />
+    </div>
     <!-- 顶部导航 -->
     <div class="layout_tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout_main">789</div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import Logo from "./logo/index.vue";
+</script>
 <style scoped lang="scss">
 .layout_container {
   position: relative;
