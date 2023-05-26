@@ -6,16 +6,7 @@
       <!-- 滚动组件 -->
       <el-scrollbar height="400px" class="scrollbar">
         <el-menu text-color="white" background-color="#001529">
-          <el-menu-item index="1">首页</el-menu-item>
-          <el-menu-item index="2">数据大屏</el-menu-item>
-          <el-sub-menu index="3">
-            <template #title>
-              <span>权限管理</span>
-            </template>
-            <el-menu-item index="3-1">用户管理</el-menu-item>
-            <el-menu-item index="3-2">角色管理</el-menu-item>
-            <el-menu-item index="3-3">菜单管理</el-menu-item>
-          </el-sub-menu>
+          <Menu :menu-list="menuList" />
         </el-menu>
       </el-scrollbar>
     </div>
@@ -26,7 +17,13 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { computed } from "vue";
+
 import Logo from "./logo/index.vue";
+import Menu from "./menu/index.vue";
+import useUserStore from "@/store/modules/user";
+const userStore = useUserStore();
+const menuList = computed(() => userStore.menuRoutes);
 </script>
 <style scoped lang="scss">
 .layout_container {
@@ -42,6 +39,10 @@ import Logo from "./logo/index.vue";
     .scrollbar {
       width: 100%;
       height: calc(100vh - $base-menu-logo-height);
+
+      .el-menu {
+        border-right: none;
+      }
     }
   }
 
