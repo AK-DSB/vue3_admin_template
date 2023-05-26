@@ -3,7 +3,9 @@
     <template v-if="!item.children">
       <el-menu-item v-if="!item.meta.hidden" :index="item.path">
         <template #title>
-          <span>图标</span>
+          <el-icon>
+            <component :is="item.meta.icon" />
+          </el-icon>
           <span>{{ item.meta.title }}</span>
         </template>
       </el-menu-item>
@@ -11,6 +13,9 @@
     <template v-if="item.children && item.children.length == 1">
       <el-menu-item v-if="!item.meta.hidden" :index="item.children[0].path">
         <template #title>
+          <el-icon>
+            <component :is="item.children[0].meta.icon" />
+          </el-icon>
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
@@ -18,7 +23,9 @@
     <template v-if="item.children && item.children.length > 1">
       <el-sub-menu v-if="!item.meta.hidden" :index="item.path">
         <template #title>
-          <span>图标</span>
+          <el-icon>
+            <component :is="item.meta.icon" />
+          </el-icon>
           <span>{{ item.meta.title }}</span>
         </template>
         <Menu :menu-list="item.children" />
@@ -27,15 +34,11 @@
   </template>
 </template>
 <script lang="ts" setup>
-import { onMounted } from "vue";
 import type { RouteRecordRaw } from "vue-router";
 const props = defineProps({
   menuList: {
     type: Array<RouteRecordRaw>,
   },
-});
-onMounted(() => {
-  console.log(props.menuList);
 });
 </script>
 <script lang="ts">

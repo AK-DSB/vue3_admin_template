@@ -5,7 +5,12 @@
       <Logo />
       <!-- 滚动组件 -->
       <el-scrollbar height="400px" class="scrollbar">
-        <el-menu text-color="white" background-color="#001529">
+        <el-menu
+          default-active="/"
+          text-color="white"
+          background-color="#001529"
+          router
+        >
           <Menu :menu-list="menuList" />
         </el-menu>
       </el-scrollbar>
