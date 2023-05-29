@@ -19,7 +19,7 @@
     <div class="layout_tabbar">456</div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
-      <router-view></router-view>
+      <Main />
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@ import { computed } from "vue";
 
 import Logo from "./logo/index.vue";
 import Menu from "./menu/index.vue";
+import Main from "./main/index.vue";
 import useUserStore from "@/store/modules/user";
 const userStore = useUserStore();
 const menuList = computed(() => userStore.menuRoutes);
