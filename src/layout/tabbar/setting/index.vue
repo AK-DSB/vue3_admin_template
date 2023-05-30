@@ -1,6 +1,11 @@
 <template>
   <el-button size="small" icon="Refresh" circle @click="refresh"></el-button>
-  <el-button size="small" icon="FullScreen" circle></el-button>
+  <el-button
+    size="small"
+    icon="FullScreen"
+    circle
+    @click="fullScreen"
+  ></el-button>
   <el-button size="small" icon="Setting" circle></el-button>
   <img src="../../../../public/logo.png" alt="" />
   <!-- 下拉菜单 -->
@@ -24,6 +29,15 @@ import useLayOutSettingStore from "@/store/modules/setting";
 const settingStore = useLayOutSettingStore();
 const refresh = () => {
   settingStore.toggleRefresh();
+};
+
+const fullScreen = () => {
+  const full = document.fullscreenElement;
+  if (!full) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
 };
 </script>
 <script lang="ts">
