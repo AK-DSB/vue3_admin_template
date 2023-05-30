@@ -6,6 +6,11 @@
   </router-view>
 </template>
 <script lang="ts" setup></script>
+<script lang="ts">
+export default {
+  name: "Main",
+};
+</script>
 <style scoped lang="scss">
 .fade-enter-from {
   opacity: 0;

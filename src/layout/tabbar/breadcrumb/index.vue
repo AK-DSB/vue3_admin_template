@@ -9,11 +9,18 @@
   </el-breadcrumb>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import useLayOutSettingStore from "@/store/modules/setting";
+import { computed } from "vue";
 
-const fold = ref(false);
+const settingStore = useLayOutSettingStore();
+const fold = computed(() => settingStore.fold);
 const changeIcon = () => {
-  fold.value = !fold.value;
+  settingStore.toggleFold();
+};
+</script>
+<script lang="ts">
+export default {
+  name: "Breadcrumb",
 };
 </script>
 <style scoped lang="scss"></style>

@@ -1,7 +1,7 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider">
+    <div class="layout_slider" :class="{ fold }">
       <Logo />
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
@@ -10,17 +10,18 @@
           text-color="white"
           background-color="#001529"
           router
+          :collapse="fold"
         >
           <Menu :menu-list="menuList" />
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar">
+    <div class="layout_tabbar" :class="{ fold }">
       <Tabbar />
     </div>
     <!-- 内容展示区域 -->
-    <div class="layout_main">
+    <div class="layout_main" :class="{ fold }">
       <Main />
     </div>
   </div>
@@ -33,8 +34,16 @@ import Menu from "./menu/index.vue";
 import Main from "./main/index.vue";
 import Tabbar from "./tabbar/index.vue";
 import useUserStore from "@/store/modules/user";
+import useLayOutSettingStore from "@/store/modules/setting";
 const userStore = useUserStore();
+const settingStore = useLayOutSettingStore();
 const menuList = computed(() => userStore.menuRoutes);
+const fold = computed(() => settingStore.fold);
+</script>
+<script lang="ts">
+export default {
+  name: "Layout",
+};
 </script>
 <style scoped lang="scss">
 .layout_container {
@@ -47,6 +56,7 @@ const menuList = computed(() => userStore.menuRoutes);
     width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
+    transition: all 0.3s;
     .scrollbar {
       width: 100%;
       height: calc(100vh - $base-menu-logo-height);
@@ -54,6 +64,10 @@ const menuList = computed(() => userStore.menuRoutes);
       .el-menu {
         border-right: none;
       }
+    }
+
+    &.fold {
+      width: $base-menu-min-width;
     }
   }
 
@@ -63,6 +77,12 @@ const menuList = computed(() => userStore.menuRoutes);
     height: $base-tabbar-height;
     top: 0;
     left: $base-menu-width;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100% - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 
   .layout_main {
@@ -74,6 +94,12 @@ const menuList = computed(() => userStore.menuRoutes);
     top: $base-tabbar-height;
     padding: 20px;
     overflow: auto;
+    transition: all 0.3s;
+
+    &.fold {
+      width: calc(100% - $base-menu-min-width);
+      left: $base-menu-min-width;
+    }
   }
 }
 </style>
