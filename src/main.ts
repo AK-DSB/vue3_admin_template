@@ -14,6 +14,7 @@ const app: App<Element> = createApp(App);
 app.use(ElementPlus, {
   locale: zhCn,
 });
+import "./permission";
 // 引入自定义插件对象: 注册整个项目的全局组件
 app.use(globalComponent);
 app.use(router);
