@@ -18,7 +18,7 @@
     </div>
     <!-- 顶部导航 -->
     <div class="layout_tabbar" :class="{ fold }">
-      <Tabbar />
+      <TabBar />
     </div>
     <!-- 内容展示区域 -->
     <div class="layout_main" :class="{ fold }">
@@ -32,7 +32,7 @@ import { computed } from "vue";
 import Logo from "./logo/index.vue";
 import Menu from "./menu/index.vue";
 import Main from "./main/index.vue";
-import Tabbar from "./tabbar/index.vue";
+import TabBar from "./tabbar/index.vue";
 import useUserStore from "@/store/modules/user";
 import useLayOutSettingStore from "@/store/modules/setting";
 const userStore = useUserStore();

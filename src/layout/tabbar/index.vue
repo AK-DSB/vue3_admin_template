@@ -15,7 +15,7 @@ import Setting from "./setting/index.vue";
 </script>
 <script lang="ts">
 export default {
-  name: "Tabbar",
+  name: "TabBar",
 };
 </script>
 <style scoped lang="scss">

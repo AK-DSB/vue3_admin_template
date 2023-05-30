@@ -60,10 +60,11 @@ import { reactive, ref } from "vue";
 import useUserStore from "@/store/modules/user";
 import { ElMessage, ElNotification } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { getTime } from "@/utils/time";
 
 const router = useRouter();
+const route = useRoute();
 const userStore = useUserStore();
 const loading = ref<boolean>();
 const ruleFormRef = ref<FormInstance>();
@@ -99,7 +100,8 @@ const login = async (formEl: FormInstance | undefined) => {
     try {
       loading.value = true;
       await userStore.userLogin(loginForm);
-      router.push("/");
+      const redirect = (route.query.redirect as string) || "/";
+      await router.push({ path: redirect });
       ElNotification({
         type: "success",
         title: "欢迎回来",

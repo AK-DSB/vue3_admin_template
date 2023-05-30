@@ -3,6 +3,7 @@ import { LoginForm } from "@/api/user/type";
 import { defineStore } from "pinia";
 import { UserState } from "./types/type";
 import { constantRoute } from "@/router/route";
+import { RouteRecordRaw } from "vue-router";
 
 const useUserStore = defineStore("User", {
   persist: true,
@@ -21,13 +22,30 @@ const useUserStore = defineStore("User", {
         return Promise.reject("用户名或密码错误");
       }
       this.token = res.token;
+      await this.userInfo();
     },
     async userInfo() {
       const res = await reqUserInfo();
       if (res) {
         this.username = res.checkUser!.username;
         this.avatar = res.checkUser!.avatar;
+        this.setMenuRoutes(constantRoute);
       }
+    },
+    async logout() {
+      // this.$reset();
+      this.reset();
+    },
+    reset() {
+      this.$state = {
+        token: "",
+        menuRoutes: [],
+        username: "",
+        avatar: "",
+      };
+    },
+    setMenuRoutes(routes: RouteRecordRaw[]) {
+      this.menuRoutes = routes;
     },
   },
   getters: {
