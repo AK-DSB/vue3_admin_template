@@ -6,7 +6,7 @@
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
         <el-menu
-          default-active="/"
+          :default-active="$route.path"
           text-color="white"
           background-color="#001529"
           router
@@ -16,7 +16,9 @@
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar">456</div>
+    <div class="layout_tabbar">
+      <Tabbar />
+    </div>
     <!-- 内容展示区域 -->
     <div class="layout_main">
       <Main />
@@ -29,6 +31,7 @@ import { computed } from "vue";
 import Logo from "./logo/index.vue";
 import Menu from "./menu/index.vue";
 import Main from "./main/index.vue";
+import Tabbar from "./tabbar/index.vue";
 import useUserStore from "@/store/modules/user";
 const userStore = useUserStore();
 const menuList = computed(() => userStore.menuRoutes);
@@ -38,9 +41,9 @@ const menuList = computed(() => userStore.menuRoutes);
   position: relative;
   width: 100%;
   height: 100vh;
-  background: red;
 
   .layout_slider {
+    color: white;
     width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-background;
@@ -58,7 +61,6 @@ const menuList = computed(() => userStore.menuRoutes);
     position: fixed;
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    background: cyan;
     top: 0;
     left: $base-menu-width;
   }
