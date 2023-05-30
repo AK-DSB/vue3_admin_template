@@ -1,5 +1,5 @@
 <template>
-  <el-button size="small" icon="Refresh" circle></el-button>
+  <el-button size="small" icon="Refresh" circle @click="refresh"></el-button>
   <el-button size="small" icon="FullScreen" circle></el-button>
   <el-button size="small" icon="Setting" circle></el-button>
   <img src="../../../../public/logo.png" alt="" />
@@ -18,7 +18,14 @@
     </template>
   </el-dropdown>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import useLayOutSettingStore from "@/store/modules/setting";
+
+const settingStore = useLayOutSettingStore();
+const refresh = () => {
+  settingStore.toggleRefresh();
+};
+</script>
 <script lang="ts">
 export default {
   name: "Setting",

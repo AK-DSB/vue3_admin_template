@@ -3,7 +3,8 @@ import { defineStore } from "pinia";
 const useLayOutSettingStore = defineStore("SettingStore", {
   state: () => {
     return {
-      fold: false,
+      fold: false, // 控制菜单折叠
+      refresh: false, // 控制页面刷新
     };
   },
   actions: {
@@ -12,6 +13,12 @@ const useLayOutSettingStore = defineStore("SettingStore", {
     },
     toggleFold() {
       this.setFold(!this.fold);
+    },
+    setRefresh(value: boolean) {
+      this.refresh = value;
+    },
+    toggleRefresh() {
+      this.setRefresh(!this.refresh);
     },
   },
 });
