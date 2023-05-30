@@ -7,11 +7,11 @@
     @click="fullScreen"
   ></el-button>
   <el-button size="small" icon="Setting" circle></el-button>
-  <img src="../../../../public/logo.png" alt="" />
+  <img :src="userDetail.avatar" alt="" />
   <!-- 下拉菜单 -->
   <el-dropdown>
     <span class="el-dropdown-link">
-      admin
+      {{ userDetail.username }}
       <el-icon class="el-icon--right">
         <arrow-down />
       </el-icon>
@@ -25,8 +25,12 @@
 </template>
 <script lang="ts" setup>
 import useLayOutSettingStore from "@/store/modules/setting";
+import useUserStore from "@/store/modules/user";
+import { computed } from "vue";
 
 const settingStore = useLayOutSettingStore();
+const userStore = useUserStore();
+const userDetail = computed(() => userStore.userDetail);
 const refresh = () => {
   settingStore.toggleRefresh();
 };
@@ -50,5 +54,6 @@ img {
   margin: 0 10px;
   width: 24px;
   height: 24px;
+  border-radius: 50%;
 }
 </style>

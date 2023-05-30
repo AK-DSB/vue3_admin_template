@@ -1,4 +1,4 @@
-import { reqLogin } from "@/api/user";
+import { reqLogin, reqUserInfo } from "@/api/user";
 import { LoginForm } from "@/api/user/type";
 import { defineStore } from "pinia";
 import { UserState } from "./types/type";
@@ -10,6 +10,8 @@ const useUserStore = defineStore("User", {
     return {
       token: "",
       menuRoutes: constantRoute,
+      username: "",
+      avatar: "",
     };
   },
   actions: {
@@ -20,8 +22,22 @@ const useUserStore = defineStore("User", {
       }
       this.token = res.token;
     },
+    async userInfo() {
+      const res = await reqUserInfo();
+      if (res) {
+        this.username = res.checkUser!.username;
+        this.avatar = res.checkUser!.avatar;
+      }
+    },
   },
-  getters: {},
+  getters: {
+    userDetail(): { username: string; avatar: string } {
+      return {
+        username: this.username,
+        avatar: this.avatar,
+      };
+    },
+  },
 });
 
 export default useUserStore;
