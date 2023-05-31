@@ -4,7 +4,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 
 const handleRequestError = (error: string) => {
-  ElMessage.error("网络出现问题");
+  ElMessage.error(error);
   //  返回一个reject的Promise
   return Promise.reject(error);
 };
@@ -31,11 +31,16 @@ request.interceptors.request.use((config) => {
 
 //  第三步:响应拦截器
 request.interceptors.response.use(
-  (response) => {
+  async (response) => {
     //  成功回调:简化数据
-    return response.data;
+    const data = response.data;
+    if (data.ok) {
+      return data;
+    }
+    await handleRequestError(response.data.message);
+    return Promise.reject(response.data);
   },
-  (error) => {
+  async (error) => {
     //  失败回调:处理http网络错误的
     //  定义一个变量:存储网络错误信息
     let message = "";
@@ -59,7 +64,7 @@ request.interceptors.response.use(
         break;
     }
     //  调用封装的函数进行错误处理
-    handleRequestError(message);
+    await handleRequestError(message);
   },
 );
 

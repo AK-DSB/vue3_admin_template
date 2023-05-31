@@ -70,7 +70,7 @@ const loading = ref<boolean>();
 const ruleFormRef = ref<FormInstance>();
 const loginForm = reactive<LoginForm>({
   username: "admin",
-  password: "111111",
+  password: "atguigu123",
 });
 
 const rules = reactive<FormRules>({
@@ -93,7 +93,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 
 const login = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate(async (valid) => {
+  await formEl.validate(async (valid) => {
     if (!valid) {
       return false;
     }
@@ -104,7 +104,7 @@ const login = async (formEl: FormInstance | undefined) => {
       await router.push({ path: redirect });
       ElNotification({
         type: "success",
-        title: "欢迎回来",
+        title: `欢迎回来 ${userStore.username}`,
         message: `HI, ${getTime()}好`,
       });
     } catch (message) {

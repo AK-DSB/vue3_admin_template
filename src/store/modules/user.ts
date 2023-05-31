@@ -1,4 +1,4 @@
-import { reqLogin, reqUserInfo } from "@/api/user";
+import { reqLogin, reqLogout, reqUserInfo } from "@/api/user";
 import { LoginForm } from "@/api/user/type";
 import { defineStore } from "pinia";
 import { UserState } from "./types/type";
@@ -19,23 +19,25 @@ const useUserStore = defineStore("User", {
   actions: {
     async userLogin(data: LoginForm) {
       const res = await reqLogin(data);
-      if (!res?.token) {
+      if (!res) {
         return Promise.reject("用户名或密码错误");
       }
-      this.token = res.token;
+      this.token = res;
       await this.userInfo();
     },
     async userInfo() {
       const res = await reqUserInfo();
-      if (res) {
-        this.username = res.checkUser!.username;
-        this.avatar = res.checkUser!.avatar;
-        this.setMenuRoutes(constantRoute);
+      if (!res) {
+        return Promise.reject("获取用户信息失败");
       }
+      this.username = res.name;
+      this.avatar = res.avatar;
+      this.setMenuRoutes(constantRoute);
     },
     async logout() {
-      // this.$reset();
       this.reset();
+      await reqLogout();
+      // this.$reset();
     },
     reset() {
       this.$state = {

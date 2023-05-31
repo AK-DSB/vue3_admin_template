@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
 const useLayOutSettingStore = defineStore("SettingStore", {
+  persist: true,
   state: () => {
     return {
       fold: false, // 控制菜单折叠

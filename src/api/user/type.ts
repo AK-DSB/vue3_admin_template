@@ -8,22 +8,16 @@ export interface Token {
 }
 
 export interface UserInfo {
-  userId: number;
   avatar: string;
-  username: string;
-  password: string;
-  desc: string;
-  roles: string[];
   buttons: string[];
+  name: string;
+  roles: string[];
   routes: string[];
-  token: string;
-}
-
-export interface User {
-  checkUser: UserInfo;
 }
 
 export interface ResponseData<T> {
   code: number;
+  message: string;
   data: T;
+  ok: boolean;
 }
