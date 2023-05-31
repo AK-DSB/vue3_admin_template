@@ -14,14 +14,14 @@
           <el-form-item prop="username">
             <el-input
               type="text"
-              :prefix-icon="User"
+              prefix-icon="User"
               v-model="loginForm.username"
             ></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input
               type="password"
-              :prefix-icon="Lock"
+              prefix-icon="Lock"
               show-password
               v-model="loginForm.password"
             ></el-input>
@@ -54,7 +54,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { User, Lock } from "@element-plus/icons-vue";
 import { LoginForm } from "@/api/user/type";
 import { reactive, ref } from "vue";
 import useUserStore from "@/store/modules/user";
