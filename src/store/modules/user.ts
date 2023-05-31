@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 import { UserState } from "./types/type";
 import { constantRoute } from "@/router/route";
 import { RouteRecordRaw } from "vue-router";
+import store from "@/store";
 
 const useUserStore = defineStore("User", {
   persist: true,
@@ -59,3 +60,7 @@ const useUserStore = defineStore("User", {
 });
 
 export default useUserStore;
+
+export function useUserStoreWithOut() {
+  return useUserStore(store);
+}

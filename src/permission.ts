@@ -1,6 +1,9 @@
 import router from "@/router";
 import nprogress from "nprogress";
 import "nprogress/nprogress.css";
+import { useUserStoreWithOut } from "@/store/modules/user";
+
+const userStore = useUserStoreWithOut();
 
 nprogress.configure({
   easing: "ease", // 动画方式
@@ -13,11 +16,28 @@ nprogress.configure({
 
 router.beforeEach(async (to, from, next) => {
   nprogress.start();
+  const token = userStore.token;
+  if (token) {
+    if (to.name === "Login") {
+      next({ path: from.path });
+    }
+    if (!userStore.username) {
+      try {
+        await userStore.userInfo();
+      } catch (e) {
+        next({ name: "Login", query: { redirect: from.path } });
+      }
+    }
+  } else {
+    if (to.name === "Login") {
+      next();
+    } else {
+      next({ name: "Login", query: { redirect: to.path } });
+    }
+  }
   next();
 });
 
 router.afterEach(async (to, from) => {
-  console.log(to);
-  console.log(from);
   nprogress.done();
 });
