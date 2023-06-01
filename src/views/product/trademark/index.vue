@@ -41,6 +41,7 @@
         v-model:current-page="pageNo"
         v-model:page-size="limit"
         :page-sizes="[3, 5, 7, 9]"
+        :background="true"
         layout="prev, pager, next, jumper, ->, sizes, total"
         :total="total"
         @current-change="handleCurrentChange"
@@ -89,7 +90,10 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, reactive, ref } from "vue";
-import { reqHasTrademark } from "@/api/product/trademark";
+import {
+  reqAddOrUpdateTrademark,
+  reqHasTrademark,
+} from "@/api/product/trademark";
 import { Records, TradeMark } from "@/api/product/trademark/type";
 import { ElMessage, UploadProps } from "element-plus";
 
@@ -145,6 +149,7 @@ const cancel = async () => {
 };
 
 const confirm = async () => {
+  await reqAddOrUpdateTrademark(trademarkParams);
   dialogFormVisible.value = false;
 };
 
