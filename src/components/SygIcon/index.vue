@@ -1,7 +1,9 @@
 <template>
-  <svg :style="{ width: `${width}px`, height: `${height}px` }">
-    <use :xlink:href="`${prefix}${name}`" :fill="color"></use>
-  </svg>
+  <div>
+    <svg :style="{ width: `${width}px`, height: `${height}px` }">
+      <use :xlink:href="`${prefix}${name}`" :fill="color"></use>
+    </svg>
+  </div>
 </template>
 <script lang="ts" setup>
 defineProps({
