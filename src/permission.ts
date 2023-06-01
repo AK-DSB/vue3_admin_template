@@ -30,11 +30,12 @@ router.beforeEach(async (to, from, next) => {
     }
     next();
   } else {
-    if (to.name === "Login") {
-      next();
-    } else {
-      next({ name: "Login", query: { redirect: to.path } });
-    }
+    next();
+    // if (to.name === "Login") {
+    //   next();
+    // } else {
+    //   next({ name: "Login", query: { redirect: to.path } });
+    // }
   }
 });
 
